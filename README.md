@@ -1,25 +1,44 @@
-# Mini Nmap Scanner (Python)
+# Advanced Nmap Scanner using Python
 
-This is a beginner-level Python project created on Kali Linux.
+A Python-based advanced network scanning tool built on top of Nmap.
+This tool helps in automating reconnaissance during penetration testing.
 
 ## Features
-- Scan a specific port
-- Check whether the port is OPEN or CLOSED
-- Uses Python socket module
+- Target host discovery
+- Port scanning (custom ports)
+- Service & state detection
+- Clean and readable output
 
-## Tools & Technology
+## Requirements
+- Linux (Kali Linux recommended)
 - Python 3
-- Kali Linux
-- Socket Programming
+- Nmap installed
+- python-nmap library
 
-## How to Run
-1. python3 mini_nmap.py
-2. Enter IP address
-3. Enter port number
+## Installation
+```bash
+git clone https://github.com/dushyantyaduvanshi520-crypto/mini-nmap-scanner.git
+cd mini-nmap-scanner
+python3 -m venv venv
+source venv/bin/activate
+pip install python-nmap
 
-## Learning Outcome
-- Python basics
-- Networking concepts
-- Port scanning logic
+Usage
+sudo python3 advanced_nmap.py
 
-⚠️ For educational purpose only.
+Example
+Target IP: 127.0.0.1
+Open Port: 80 | Service: http | State: open
+
+Author
+Dushyant Yadav
+Cyber Security & Ethical Hacking Learner
+Save: *CTRL + O → Enter → CTRL + X*
+
+---
+
+### 2️⃣ GitHub pe changes push karo
+```bash
+git add README.md
+git commit -m "Added professional README"
+git push
