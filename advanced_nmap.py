@@ -1,39 +1,20 @@
-import socket
+import nmap
 
-target = input("Enter target IP: ")
+scanner = nmap.PortScanner()
 
-ports = [21, 22, 23, 25, 53, 76, 80, 110, 139, 443]
+target = input("Enter Target IP: ")
+ports = input("Enter Ports (e.g. 22,80,443): ")
 
-print("\nStarting scan on", target)
-print("-" * 40)
+print(f"\n[+] Scanning Target: {target}")
 
-for port in ports:
-    s = socket.socket()
-    s.settimeout(2)
+scanner.scan(target, ports)
 
-    try:
-        result = s.connect_ex((target, port))
+host = target
 
-        if result == 0:
-            print(f"[+] Port {port} OPEN")
+print(f"Host: {host}")
+print(f"State: {scanner[host].state()}")
 
-            try:
-                banner = s.recv(1024)
-                if banner:
-                    print(f"    Banner: {banner.decode(errors='ignore').strip()}")
-                else:
-                    print("    Banner: <no banner>")
-            except:
-                print("    Banner: <could not grab>")
-
-        else:
-            print(f"[-] Port {port} CLOSED")
-
-    except socket.timeout:
-        print(f"[!] Port {port} FILTERED (timeout)")
-
-    except Exception as e:
-        print(f"[!] Error on port {port}: {e}")
-
-    finally:
-        s.close()
+for port in ports.split(','):
+    port = int(port)
+    state = scanner[host]['tcp'][port]['state']
+    print(f"Port {port} → {state}")
